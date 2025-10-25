@@ -1,4 +1,4 @@
-## 🧱 Direct Exchange
+## Direct Exchange
 
 **Tanım:**
 
@@ -18,28 +18,20 @@
 * Her mesajın **tek ve belirli** bir kuyruğa gitmesi isteniyorsa kullanılır.
 * Örneğin: sipariş durum mesajlarının "approved", "rejected", "pending" gibi farklı kuyruklara ayrılması.
 
-💬 Görsel not:
-
 > “Mesajların direkt olarak belirli bir kuyruğa gönderilmesini sağlayan exchange’dir.”
 
 ---
 
-## ⚙️ Direct Exchange Davranışı – Pratik İnceleme
-
-### 🎓 Teorik Hatırlatma
-
 * **Direct Exchange**, birden fazla kuyruğun bulunduğu senaryolarda, mesajın belirli bir kuyruğa yönlendirilmesini sağlar.
 * **Publisher**, mesajı gönderirken `routing key` değeriyle hangi kuyruğa gideceğini belirtir.
 * **Consumer**, bu kuyruğa bağlanarak sadece o anahtar ile gönderilen mesajları tüketir.
-
-📌 **Özet:**
 
 * Publisher → Exchange → Queue (routing key ile eşleşen)
 * Hedef kuyruğa nokta atışı mesaj yönlendirme yapılır.
 
 ---
 
-### 🧩 Publisher (Sol taraf)
+### Publisher
 
 ```csharp
 using RabbitMQ.Client;
@@ -75,7 +67,7 @@ Console.Read();
 
 ---
 
-### 🧩 Consumer (Sağ taraf)
+### Consumer
 
 ```csharp
 using RabbitMQ.Client;
@@ -107,10 +99,9 @@ consumer.Received += (sender, e) =>
 
 Console.Read();
 ```
-
 ---
 
-### 🧠 Açıklama Adımları
+### Açıklama Adımları
 
 1️⃣ **Publisher’da**, consumer tarafında da kullanılacak olan isim ve type’a sahip bir exchange tanımlanmalıdır.
 2️⃣ **Publisher** tarafından `routing key`’de bulunan değerdeki kuyruğa gönderilen mesajlar, consumer tarafından oluşturulan aynı isimli kuyrukla tüketilmelidir.
@@ -120,7 +111,7 @@ Bunun için öncelikle bir kuyruk oluşturulmalıdır.
 
 ---
 
-### 🧾 Transcript Özeti
+### Özet
 
 * **Exchange türleri** teorik olarak daha önce anlatılmıştı, bu derste pratik olarak uygulanıyor.
 * İlk örnek olarak **Direct Exchange** seçildi.
@@ -130,7 +121,7 @@ Bunun için öncelikle bir kuyruk oluşturulmalıdır.
 * Consumer, `BasicConsume` metodu ile gelen mesajları işliyor.
 * Böylece “nokta atışı” mesaj yönlendirmesi sağlanıyor.
 
-🎯 **Sonuç:**
+**Sonuç:**
 Direct Exchange modeli, birden fazla kuyruğun bulunduğu durumlarda belirli kuyruğa mesaj göndermeyi sağlar.
 Bu yapı sayesinde sistemler hedef odaklı, kontrollü mesaj akışı elde eder.
 

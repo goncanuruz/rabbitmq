@@ -2,7 +2,7 @@
 
 ---
 
-## 🧩 Gelişmiş Kuyruk Mimarisi Nedir?
+## Gelişmiş Kuyruk Mimarisi Nedir?
 
 RabbitMQ teknolojisinin ana fikri, yoğun kaynak gerektiren işleri/görevleri/operasyonları hemen yapmaya koyularak tamamlanmasını beklemek zorunda kalmaksızın, bu işleri ölçeklendirilebilir bir vaziyette daha sonra yapılacak şekilde planlamaktır.
 
@@ -16,24 +16,24 @@ Kuyrukların ve mesajların kalıcılığı, mesajların birden fazla tüketiciy
 
 ## Round Robin Dispatching
 
-### 💬 Tanım
+###Tanım
 
 RabbitMQ varsayılan olarak tüm consumer’lara mesajları **sırayla (döngüsel)** gönderir. Bu davranış **Round Robin Dispatching** olarak adlandırılır.
 
-### 🧩 Mekanizma
+### Mekanizma
 
 - Mesajlar kuyruğa gelir.
 - RabbitMQ bu mesajları sırayla consumer’lara gönderir.
 - Örneğin: 1. mesaj → Consumer A, 2. mesaj → Consumer B, 3. mesaj → Consumer C.
 - Bu döngü tüm mesajlar bitene kadar devam eder.
 
-### 🔍 Örnek Senaryo
+### Örnek
 
 E-ticaret siparişlerinde her siparişin sıralı olarak farklı servislere dağıtılması sağlanabilir. Ancak bu modelde bazı consumer’ların daha hızlı veya daha yavaş olması durumunda adaletsizlik oluşabilir.
 
 ---
 
-## 📩 Message Acknowledgement
+## Message Acknowledgement
 
 RabbitMQ, tüketiciye gönderdiği mesajı başarılı bir şekilde işlensin veya işlenmesin hemen kuyruktan silinmesi üzere işaretler.
 
@@ -43,11 +43,11 @@ Bu tarz durumlara istinaden mesaj başarılı işlendi ise eğer kuyruktan silin
 
 Consumer’dan mesaj işlemenin başarıyla sonuçlandığına dair dönüt alan RabbitMQ mesajı silecektir.
 
-### ⚠️ Sorun
+### Sorun
 
 Consumer hata aldığında veya kapanırsa mesaj kuyruktan silinir ve **kaybolur.**
 
-### ✅ Çözüm
+### Çözüm
 
 **Manual Acknowledgement (Manuel Onaylama)** kullanılır.
 
@@ -58,7 +58,7 @@ channel.BasicConsume(queue: "example-queue", autoAck: false, consumer: consumer)
 channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
 ```
 
-### 🔧 Parametreler
+### Parametreler
 
 | Parametre          | Açıklama                                                             |
 | ------------------ | -------------------------------------------------------------------- |
@@ -68,7 +68,7 @@ channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
 
 ---
 
-## ⚠️ Message Acknowledgement Problemleri Nelerdir?
+## Message Acknowledgement
 
 Bir message işlenmeden consumer problem yaşarsa bu mesajın sağlıklı bir şekilde işlenebilmesi için başka bir consumer tarafından tüketilebilir olmalıdır.
 
@@ -80,7 +80,7 @@ Tabi ayriyeten mesajlar onaylanarak silinmediği taktirde kuyrukta kalınmasına
 
 ---
 
-## 💬 Message Acknowledgement’e Dair Son İstişareler
+## Message Acknowledgement’e Dair Son İstişareler
 
 Anlayacağınız, bu özellik sayesinde bir mesajın kaybolmadığından emin olabilmekteyiz.
 
@@ -96,7 +96,7 @@ Eğer bu süre dolarda tüketiciden herhangi bir onay bildirimi gelmezse RabbitM
 
 ---
 
-## ⚙️ Message Acknowledgement Nasıl Yapılandırılır? (BasicAck)
+## Message Acknowledgement Nasıl Yapılandırılır? (BasicAck)
 
 RabbitMQ’da mesaj onaylama sürecini aktifleştirebilmek için consumer uygulamasında `BasicConsume` metodundaki `autoAck` parametresini görseldeki gibi false değerine getirebilirsiniz.
 
@@ -108,7 +108,7 @@ Multiple parametresi, birden fazla mesaja dair onay bildirisi gönderir. Eğer t
 
 ---
 
-## 🔄 BasicNack ile İşlenmeyen Mesajları Geri Gönderme
+## BasicNack ile İşlenmeyen Mesajları Geri Gönderme
 
 Bazen consumer’lar da istemsiz durumların dışında kendi kontrollerimiz neticesinde mesajları işlememek isteyebilir veyahut ilgili mesajın işlenmesini başarıyla sonuçlandıramayacağımızı anlayabiliriz.
 
@@ -120,7 +120,7 @@ True değeri verildiği taktirde mesaj kuyruğa tekrardan işlenmek üzere eklen
 
 ---
 
-## ⛔ BasicCancel ile Bir Kuyruktaki Tüm Mesajların İşlenmesini Reddetme
+## BasicCancel ile Bir Kuyruktaki Tüm Mesajların İşlenmesini Reddetme
 
 `BasicCancel` metodu ile verilen consumerTag değerine karşılık gelen queue’daki tüm mesajlar reddedilerek işlenmez.
 
@@ -141,13 +141,13 @@ channel.BasicCancel(consumerTag);
 
 ---
 
-## 🚫 BasicReject ile Tek Bir Mesajın İşlenmesini Reddetme
+## BasicReject ile Tek Bir Mesajın İşlenmesini Reddetme
 
 RabbitMQ’da kuyrukta bulunan mesajlardan belirli olanların consumer tarafından işlenmesini istemediğimiz durumlarda `BasicReject` metodunu kullanabiliriz.
 
 ---
 
-## 🧱 Message Durability
+## Message Durability
 
 Consumer’ların sıkıntı yaşama durumunda mesajların kaybolmayacağının garantisinin nasıl sağlanacağını öğrenmiş olduk.
 
@@ -179,7 +179,7 @@ Kalıcı olarak işaretlenmiş mesajlar **%100 garanti** vermez; fiziksel disk h
 
 ---
 
-## ⚖️ Fair Dispatch
+## Fair Dispatch
 
 RabbitMQ’da tüm consumer’lara eşit şekilde mesajları iletebilirsiniz.
 
@@ -191,7 +191,7 @@ Böylece bir consumer’ın diğer consumer’lardan daha fazla yük alması ve 
 
 ---
 
-## ⚙️ Mesaj İşleme Konfigürasyonu
+## Mesaj İşleme Konfigürasyonu
 
 RabbitMQ’da `BasicQos` metodu ile mesajların işleme hızını ve teslimat sırasını belirleyebiliriz. Böylece `Fair Dispatch` özelliği konfigüre edilebilmektedir.
 
@@ -209,7 +209,7 @@ Bu konfigürasyonun tüm consumerlar için mi yoksa sadece çağrı yapılan con
 channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
 ```
 
-### 📘 Parametreler
+### Parametreler
 
 | Parametre         | Açıklama                                                        |
 | ----------------- | --------------------------------------------------------------- |
@@ -217,11 +217,11 @@ channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
 | **prefetchCount** | Bir consumer’ın aynı anda işleyebileceği mesaj sayısı.          |
 | **global**        | Ayar tüm consumer’lar için mi, sadece biri için mi uygulanacak. |
 
-### 🧠 Mantık
+### Mantık
 
 Bir consumer, elindeki mesajı işlemeden yeni mesaj almaz. Böylece tüm consumer’lar dengeli çalışır.
 
-## 🧩 Özet
+## Özet
 
 | Konu                        | Amaç                                               |
 | --------------------------- | -------------------------------------------------- |
