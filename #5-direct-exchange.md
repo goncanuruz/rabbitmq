@@ -1,4 +1,4 @@
-## Direct Exchange
+## ## RabbitMQ – Direct Exchange
 
 **Tanım:**
 
