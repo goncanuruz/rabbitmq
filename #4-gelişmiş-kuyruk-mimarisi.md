@@ -8,9 +8,9 @@ RabbitMQ teknolojisinin ana fikri, yoğun kaynak gerektiren işleri/görevleri/o
 
 Tabi bu planlamayı gerçekleştirirken kuyruklardan istifade edilmekte ve görevleri temsil edecek olan mesajlar bu kuyruklara atılmakta ve tüketiciler tarafından bu mesajlar elde edilerek görevlerin asenkron bir şekilde işlenmesi sağlanmaktadır.
 
-Tüm bu süreçte kuyrukların bakımı, yağlanması gerekmekte :) Senaryosuna göre mesajların kalıcılığına dair durumlar vs. konfigüre edilmesi gerekmektedir. Ayrıca birden fazla tüketicinin söz konusu olduğu durumlarda nasıl bir davranışın olacağı vs. durumları da oldukça önem arz etmektedir.
+Tüm bu süreçte kuyrukların bakımı, yağlanması gerekmekte :) Senaryoya görde mesajların kalıcılığına dair durumlar vs. konfigüre edilmesi gerekmektedir. Ayrıca birden fazla tüketicinin söz konusu olduğu durumlarda nasıl bir davranışın olacağı vs. durumları da oldukça önem arz etmektedir.
 
-Gelişmiş Kuyruk Mimarisi işte tam da bu noktada devreye girmektedir! Kuyrukların ve mesajların kalıcılığı, mesajların birden fazla tüketiciye karşı dağıtım stratejisi yahut tüketici tarafından işlenmiş bir mesajın kuyruktan silinebilmesi için onay/bildiri sistemi vs. tüm bu detaylar bu başlık altında değerlendirilecektir.
+Kuyrukların ve mesajların kalıcılığı, mesajların birden fazla tüketiciye karşı dağıtım stratejisi yahut tüketici tarafından işlenmiş bir mesajın kuyruktan silinebilmesi için onay/bildiri sistemi vs. tüm bu detaylar bu başlık altında değerlendirilecektir.
 
 ---
 
